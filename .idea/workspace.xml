@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72b847e3-68f2-4aa6-9943-a567ed49a637" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/settings.py" afterPath="$PROJECT_DIR$/sample/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tag/views.py" afterPath="$PROJECT_DIR$/tag/views.py" />
-    </list>
+    <list default="true" id="72b847e3-68f2-4aa6-9943-a567ed49a637" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,22 +36,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tag/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3520">
-              <caret line="224" column="35" lean-forward="false" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
+            <state relative-caret-position="670">
+              <caret line="224" column="49" lean-forward="true" selection-start-line="224" selection-start-column="49" selection-end-line="224" selection-end-column="49" />
               <folding>
                 <element signature="e#26#68#0" expanded="true" />
                 <element signature="e#1710#1753#0" expanded="false" />
-                <marker date="1512598618124" expanded="false" signature="1216:1553" ph="..." />
-                <marker date="1512598618124" expanded="false" signature="4609:6263" ph="..." />
+                <marker date="1512598940936" expanded="false" signature="1216:1553" ph="..." />
+                <marker date="1512598940936" expanded="false" signature="4609:6263" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1827">
@@ -117,8 +112,8 @@
         <option value="$PROJECT_DIR$/templates/tag.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/allTags.html" />
-        <option value="$PROJECT_DIR$/tag/views.py" />
         <option value="$PROJECT_DIR$/sample/settings.py" />
+        <option value="$PROJECT_DIR$/tag/views.py" />
       </list>
     </option>
   </component>
@@ -649,24 +644,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tag/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3520">
-          <caret line="224" column="35" lean-forward="false" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
-          <folding>
-            <element signature="e#26#68#0" expanded="true" />
-            <element signature="e#1710#1753#0" expanded="false" />
-            <marker date="1512598618124" expanded="false" signature="1216:1553" ph="..." />
-            <marker date="1512598618124" expanded="false" signature="4609:6263" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1827">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tag/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="224" column="49" lean-forward="true" selection-start-line="224" selection-start-column="49" selection-end-line="224" selection-end-column="49" />
+          <folding>
+            <element signature="e#26#68#0" expanded="true" />
+            <element signature="e#1710#1753#0" expanded="false" />
+            <marker date="1512598940936" expanded="false" signature="1216:1553" ph="..." />
+            <marker date="1512598940936" expanded="false" signature="4609:6263" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
