@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72b847e3-68f2-4aa6-9943-a567ed49a637" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tag/static/tag/js/tag.js" afterPath="$PROJECT_DIR$/tag/static/tag/js/tag.js" />
-    </list>
+    <list default="true" id="72b847e3-68f2-4aa6-9943-a567ed49a637" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
