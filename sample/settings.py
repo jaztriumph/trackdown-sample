@@ -24,7 +24,7 @@ SECRET_KEY = 'w7vx2@(_e88!gac+40qb2(!$94m5=3d7jh@1)=apvphkmbz6y*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trackdown.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['trackdown.herokuapp.com', 'localhost']
 
 SITE_ID = 1
 
@@ -52,14 +52,14 @@ CACHES = {
 USER_AGENTS_CACHE = 'default'
 
 MIDDLEWARE = [
-                 'django.middleware.security.SecurityMiddleware',
-                 'django.contrib.sessions.middleware.SessionMiddleware',
-                 'django.middleware.common.CommonMiddleware',
-                 'django.middleware.csrf.CsrfViewMiddleware',
-                 'django.contrib.auth.middleware.AuthenticationMiddleware',
-                 'django.contrib.messages.middleware.MessageMiddleware',
-                 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-                 'django_user_agents.middleware.UserAgentMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'sample.urls'
@@ -130,3 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
