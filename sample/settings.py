@@ -24,7 +24,7 @@ SECRET_KEY = 'w7vx2@(_e88!gac+40qb2(!$94m5=3d7jh@1)=apvphkmbz6y*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trackdown.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['trackdown.herokuapp.com', 'localhost', '0.0.0.0', ]
 
 SITE_ID = 1
 

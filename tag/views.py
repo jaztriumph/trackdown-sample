@@ -1,21 +1,21 @@
-import google as google
+# import google as google
 from PIL import Image, ImageDraw, ImageOps
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
+# from django.urls import reverse
 from django.views.decorators.cache import cache_page
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.csrf import ensure_csrf_cookie
-from google.auth.transport import requests
+# from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import ensure_csrf_cookie
+# from google.auth.transport import requests
 from google.oauth2 import id_token
 import uuid
 from .models import User1, UserInfo, ClientInfo
 import datetime
 from django.utils import timezone
-import string
-from rest_framework import serializers
+# import string
+# from rest_framework import serializers
 
 CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com'
 
@@ -24,7 +24,7 @@ tag_link = ""
 
 
 def log_in(request):
-    print request.get_full_path()
+    # print request.get_full_path()
     token = request.GET.get('token')
     if (request.method == "GET") & (token is not None):
         # token = request.GET.get('token')
@@ -82,7 +82,7 @@ def log_in(request):
 
 
 def log_out(request):
-    print request.get_full_path()
+    # print request.get_full_path()
     logout(request)
     return redirect('tag:log_in')
 
@@ -96,7 +96,7 @@ def form(request):
         global tag_link
         tag_link = generated_tag
         now = timezone.now().strftime('%H:%M:%S')
-        print now
+        print (now)
         # link = BASE_TAG_URL + generated_tag
         userinfo = UserInfo()
         userinfo.user = request.user
@@ -110,7 +110,7 @@ def form(request):
 @login_required
 def tag_generator(request):
     now = timezone.now().strftime("Time:  %H:%M:%S, Day:  %d:%b:%y")
-    print now
+    print (now)
     user = request.user
     context = {'name': user.first_name, 'picture': user.picture_url}
     # userIn = UserInfo.objects.filter(user=request.user)
