@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <!-- Material Design Lite -->
+
     {% load staticfiles %}
+
+    <link rel="shortcut icon" type="image/svg" href="{% static 'tag/favicon.ico' %}"/>
+    <!-- Material Design Lite -->
+
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
 
     <script src="{% static 'tag/js/index.js' %}"></script>

@@ -20,7 +20,7 @@ from django.utils import timezone
 
 CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com'
 
-BASE_TAG_URL = "http://localhost:8000/image?image_tag="
+BASE_TAG_URL = "https://trackdown.herokuapp.com/image?image_tag="
 tag_link = ""
 
 

@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    {% load staticfiles %}
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id"
           content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/login.css' %}"/>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 <body>
-
-<div style="margin:0 auto;text-align: center;position: absolute;" class="g-signin2" data-onsuccess="onSignIn"></div>
-
+<div id="signInButton">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+</div>
 <script>
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
