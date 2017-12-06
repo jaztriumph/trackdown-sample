@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+
+<div style="margin:0 auto;text-align: center;position: absolute;" class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<script>
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        {#        var profile = googleUser.getBasicProfile();#}
+        {#        console.log("ID: " + profile.getId()); // Don't send this directly to your server!#}
+        {#        console.log('Full Name: ' + profile.getName());#}
+        {#        console.log('Given Name: ' + profile.getGivenName());#}
+        {#        console.log('Family Name: ' + profile.getFamilyName());#}
+        {#        console.log("Image URL: " + profile.getImageUrl());#}
+        {#        console.log("Email: " + profile.getEmail());#}
+        {##}
+        {##}
+        var idToken = googleUser.getAuthResponse().id_token;
+        window.location = "{% url 'tag:log_in'  %}" + "?token=" + idToken;
+        {#        console.log("ID Token: " + id_token);#}
+        {#        var xhr = new XMLHttpRequest();#}
+        {#        xhr.open('POST', 'http://localhost:8000/' + id_token +'/');#}
+
+        {#        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');#}
+        {#        xhr.onload = function () {#}
+        {#            console.log('Signed in as: ' + xhr.responseText);#}
+        {##}
+        {##}
+        {#        };#}
+        {#        xhr.send('idtoken=' + id_token);#}
+
+    }
+</script>
+
+
+</body>
+</html>

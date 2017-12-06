@@ -1,0 +1,67 @@
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Generator</title>
+    <meta name="google-signin-client_id"
+          content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+</head>
+<body>
+
+<div>
+    <img src="{{ picture }}">
+    <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>
+    <p><strong>{{ name }}</strong></p>
+
+</div>
+<div>
+    <form class="form" action="{% url 'tag:form' %}" method="get">
+
+        <label>
+            Enter tag:
+        </label>
+        <input id="id_tagname" maxlength="50" name="tagname" type="text"  required>
+        <button type="submit" onclick="return empty()">Generate</button>
+    </form>
+</div>
+<div style="display: block;">
+
+    <input id="link" size="60" readonly="readonly" style="background: oldlace;height:5%;" value="{{ generated_tag }}">
+
+    <button onclick="copyText()">Copy</button>
+</div>
+
+<script>
+    function empty() {
+         var x;
+    x = document.getElementById("id_tagname").value;
+    if (x.trim()=="") {
+        alert("Tag should not be empty");
+        return false;
+    }
+    }
+    function copyText() {
+        var copyText = document.getElementById("link");
+        copyText.select();
+        document.execCommand("Copy");
+        document.getSelection().removeAllRanges();
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+        GoogleAuth.disconnect();
+    }
+
+    function onLoad() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init();
+        });
+    }
+</script>
+
+
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</body>
+</html>
