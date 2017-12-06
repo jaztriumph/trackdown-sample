@@ -6,12 +6,15 @@
 {##}
 {#</div>#}
 {#    {% endblock %}#}
+{% block title %}
+    Generator
+{% endblock %}
 {% block body %}
 
 <html >
 <head>
     <meta charset="UTF-8">
-    <title>Generator</title>
+
     {% load staticfiles %}
     <meta name="google-signin-client_id"
           content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
@@ -45,8 +48,13 @@
 
     <input  id="link" size="60" class="mdl-textfield__input" readonly="readonly" value="{{ generated_tag }}">
 <div  id="copyButton" >
-    <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button"  onclick="copyText()">Copy</button>
+
+                   <img src="{% static 'tag/images/content_copy_black_36px.svg' %}" onclick="copyText()" />
+
+
+{#    <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button"  onclick="copyText()"><img src="{% static 'tag/images/content_copy_black_48px.svg' %}"/></button>#}
 </div>
+
     </div>
 
 {#<script>#}

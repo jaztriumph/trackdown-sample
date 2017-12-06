@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>prac</title>
+    <title>{% block title %}{% endblock %}</title>
     <!-- Material Design Lite -->
     {% load staticfiles %}
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
@@ -44,10 +44,10 @@
         </span>
         <!-- navigation Container, with links -->
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link " href="">Make a Tag</a>
-            <a class="mdl-navigation__link " href="">Seen Tags</a>
-            <a class="mdl-navigation__link" href="">Used Tags</a>
-            <a class="mdl-navigation__link" href="">All Tags</a>
+            <a class="mdl-navigation__link " href="{% url 'tag:tag_generator' %}">Make a Tag</a>
+            <a class="mdl-navigation__link " href="{% url 'tag:seen_tags' %}">Seen Tags</a>
+            <a class="mdl-navigation__link" href="">Unused Tags</a>
+            <a class="mdl-navigation__link" href="{% url 'tag:all_tags' %}">All Tags</a>
             <a class="mdl-navigation__link" href="{% url 'tag:log_out' %}" onclick="signOut();">logout</a>
 {#             <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>#}
         </nav>

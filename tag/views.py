@@ -194,5 +194,33 @@ def image(request):
     return response
 
 
-def index(request):
-    return render(request, 'index.html')
+@login_required
+def all_tags(request):
+    user = request.user
+    user_info = UserInfo.objects.filter(user=user)
+    context = {'name': user.first_name, 'picture': user.picture_url}
+    context.update({'user_info': user_info, 'BASE_TAG_URL': BASE_TAG_URL})
+    return render(request, "allTags.html", context)
+
+
+@login_required
+def seen_tags(request):
+    user = request.user
+    user_info = UserInfo.objects.filter(user=user)
+    clients = []
+    for info in user_info:
+        client_info = ClientInfo.objects.filter(user_info=info)
+        if len(client_info) > 2:
+            count = 0
+            index = 0
+            for client in client_info:
+                if client.client_agent.split('/')[0].strip() == 'PC':
+                    count += 1
+                if count > 2:
+                    clients.append(client_info[index])
+                    break
+                index += 1
+
+    context = {'name': user.first_name, 'picture': user.picture_url}
+    context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
+    return render(request, "seenTags.html", context)

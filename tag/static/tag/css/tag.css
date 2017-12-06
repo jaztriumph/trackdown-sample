@@ -12,9 +12,14 @@
 
 #copyButton {
     padding-left: 10px;
+    border-radius:50% ;
+
     /*float: inherit;*/
     /*position: relative;*/
 
+}
+#copyButton :hover{
+    background: lightgray;
 }
 
 #generateForm {
