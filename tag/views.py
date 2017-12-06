@@ -6,9 +6,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 # from django.urls import reverse
 from django.views.decorators.cache import cache_page
-# from django.views.decorators.csrf import csrf_exempt
-# from django.views.decorators.csrf import ensure_csrf_cookie
-# from google.auth.transport import requests
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
+from google.auth.transport import requests
 from google.oauth2 import id_token
 import uuid
 from .models import User1, UserInfo, ClientInfo
@@ -30,7 +30,7 @@ def log_in(request):
         # token = request.GET.get('token')
         # print(token)
         try:
-            idinfo = id_token.verify_oauth2_token(token, google.auth.transport.requests.Request(), CLIENT_ID)
+            idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
             # print("iss")
             # print(idinfo['iss'])
             # Or, if multiple clients access the backend server:
