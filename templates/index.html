@@ -9,7 +9,7 @@
 
     <script src="{% static 'tag/js/index.js' %}"></script>
 
-     <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
 
     <link rel="stylesheet"
           href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-purple.min.css"/>
@@ -24,7 +24,7 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title of the Header -->
-            <span class="mdl-layout-title">Tracker</span>
+            <span class="mdl-layout-title">{% block header %}{% endblock %}</span>
             <!-- Spacer, to align items to right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation links, hidden on smaller displays -->
@@ -49,7 +49,7 @@
             <a class="mdl-navigation__link" href="">Unused Tags</a>
             <a class="mdl-navigation__link" href="{% url 'tag:all_tags' %}">All Tags</a>
             <a class="mdl-navigation__link" href="{% url 'tag:log_out' %}" onclick="signOut();">logout</a>
-{#             <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>#}
+            {#             <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>#}
         </nav>
     </div>
 
