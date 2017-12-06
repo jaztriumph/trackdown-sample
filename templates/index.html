@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prac</title>
+    <!-- Material Design Lite -->{% load static %}
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+
+    <script src="{% static 'tag/js/index.js' %}"></script>
+
+     <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
+
+    <link rel="stylesheet"
+          href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-purple.min.css"/>
+    <!-- Material Design icon font -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
+
+
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title of the Header -->
+            <span class="mdl-layout-title">Tracker</span>
+            <!-- Spacer, to align items to right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation links, hidden on smaller displays -->
+            <nav class="mdl-navigation ">
+                <a class="mdl-navigation__link" href=""><img src="{% static 'tag/images/help_36px.svg' %}"/></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Drawer container -->
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+
+               <img height="42" width="42" id="profilePic" src="{{ picture }}"/>
+               <p id="userName"><strong>{{ name }}</strong></p>
+
+        </span>
+        <!-- navigation Container, with links -->
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link " href="">Make a Tag</a>
+            <a class="mdl-navigation__link " href="">Seen Tags</a>
+            <a class="mdl-navigation__link" href="">Used Tags</a>
+            <a class="mdl-navigation__link" href="">All Tags</a>
+            <a class="mdl-navigation__link" href="{% url 'tag:log_out' %}" onclick="signOut();">logout</a>
+{#             <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>#}
+        </nav>
+    </div>
+
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
+
+</div>
+</body>
+</html>

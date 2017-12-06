@@ -1,67 +1,84 @@
+{% extends 'index.html' %}
+{#{% block pro_pic %}#}
+{#    <div>#}
+{#    <img height="42" width="42" id="profilePic" src="{{ picture }}"/>#}
+{#    <p id="userName"><strong>{{ name }}</strong></p>#}
+{##}
+{#</div>#}
+{#    {% endblock %}#}
+{% block body %}
+
 <html >
 <head>
     <meta charset="UTF-8">
     <title>Generator</title>
     <meta name="google-signin-client_id"
           content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+    {% load static %}
+     <link rel="stylesheet" type="text/css" href="{% static 'tag/css/tag.css' %}"/>
+    <script src="{% static 'tag/js/tag.js' %}"> </script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </head>
 <body>
 
-<div>
-    <img src="{{ picture }}">
-    <a href="{% url 'tag:log_out' %}" onclick="signOut();">Sign out</a>
-    <p><strong>{{ name }}</strong></p>
-
-</div>
-<div>
+{#{% block pro_pic %}#}
+{#    <div>#}
+{#    <img src="{{ picture }}">#}
+{#    <p><strong>{{ name }}</strong></p>#}
+{##}
+{#</div>#}
+{#    {% endblock %}#}
+<div  id="generateForm" class="demo-tooltip">
     <form class="form" action="{% url 'tag:form' %}" method="get">
-
-        <label>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label" >
             Enter tag:
         </label>
-        <input id="id_tagname" maxlength="50" name="tagname" type="text"  required>
-        <button type="submit" onclick="return empty()">Generate</button>
+        <input  class="mdl-textfield__input"  id="id_tagname" maxlength="50" name="tagname" type="text"  required>
+    </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" onclick="return empty()">Generate</button>
     </form>
+
 </div>
-<div style="display: block;">
+<div id="generatedText" >
 
-    <input id="link" size="60" readonly="readonly" style="background: oldlace;height:5%;" value="{{ generated_tag }}">
-
-    <button onclick="copyText()">Copy</button>
+    <input  id="link" size="60" class="mdl-textfield__input" readonly="readonly" value="{{ generated_tag }}">
+<div  id="copyButton" >
+    <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button"  onclick="copyText()">Copy</button>
 </div>
+    </div>
 
-<script>
-    function empty() {
-         var x;
-    x = document.getElementById("id_tagname").value;
-    if (x.trim()=="") {
-        alert("Tag should not be empty");
-        return false;
-    }
-    }
-    function copyText() {
-        var copyText = document.getElementById("link");
-        copyText.select();
-        document.execCommand("Copy");
-        document.getSelection().removeAllRanges();
-    }
+{#<script>#}
+{#    function empty() {#}
+{#         var x;#}
+{#    x = document.getElementById("id_tagname").value;#}
+{#    if (x.trim()=="") {#}
+{#        alert("Tag should not be empty");#}
+{#        return false;#}
+{#    }#}
+{#    }#}
+{#    function copyText() {#}
+{#        var copyText = document.getElementById("link");#}
+{#        copyText.select();#}
+{#        document.execCommand("Copy");#}
+{#        document.getSelection().removeAllRanges();#}
+{#    }#}
+{##}
+{#    function signOut() {#}
+{#        var auth2 = gapi.auth2.getAuthInstance();#}
+{#        auth2.signOut().then(function () {#}
+{#            console.log('User signed out.');#}
+{#        });#}
+{#        GoogleAuth.disconnect();#}
+{#    }#}
+{##}
+{#    function onLoad() {#}
+{#        gapi.load('auth2', function () {#}
+{#            gapi.auth2.init();#}
+{#        });#}
+{#    }#}
+{#</script>#}
 
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
-        GoogleAuth.disconnect();
-    }
-
-    function onLoad() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init();
-        });
-    }
-</script>
-
-
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 </html>
+{% endblock %}

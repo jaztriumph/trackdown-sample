@@ -14,6 +14,7 @@ import uuid
 from .models import User1, UserInfo, ClientInfo
 import datetime
 from django.utils import timezone
+
 # import string
 # from rest_framework import serializers
 
@@ -124,6 +125,7 @@ def tag_generator(request):
     else:
         link = ""
     context.update({'generated_tag': link})
+
     return render(request, 'tag.html', context)
 
 
@@ -190,3 +192,7 @@ def image(request):
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
     return response
+
+
+def index(request):
+    return render(request, 'index.html')
