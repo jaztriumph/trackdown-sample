@@ -14,6 +14,7 @@ import uuid
 from .models import User1, UserInfo, ClientInfo
 import datetime
 from django.utils import timezone
+import os
 
 # import string
 # from rest_framework import serializers
@@ -22,9 +23,12 @@ CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleuserconten
 
 BASE_TAG_URL = "https://trackdown.herokuapp.com/image?image_tag="
 tag_link = ""
+user_tag = ""
 
 
 def log_in(request):
+    times = int(os.environ.get('TIMES',3))
+    print (times)
     # print request.get_full_path()
     token = request.GET.get('token')
     if (request.method == "GET") & (token is not None):
@@ -90,6 +94,7 @@ def log_out(request):
 
 @login_required
 def form(request):
+    global user_tag
     user_tag = request.GET.get('tagname')
     print(user_tag)
     if (request.method == "GET") & (user_tag is not None):
@@ -98,7 +103,6 @@ def form(request):
         tag_link = generated_tag
         now = timezone.now().strftime('%H:%M:%S')
         print (now)
-        # link = BASE_TAG_URL + generated_tag
         userinfo = UserInfo()
         userinfo.user = request.user
         userinfo.user_tag = user_tag.strip()
@@ -124,7 +128,7 @@ def tag_generator(request):
         link = BASE_TAG_URL + tag_link
     else:
         link = ""
-    context.update({'generated_tag': link})
+    context.update({'generated_tag': link, 'prev_tag':user_tag})
 
     return render(request, 'tag.html', context)
 
