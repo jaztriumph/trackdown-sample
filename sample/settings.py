@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'tag.apps.TagConfig',
     'django.contrib.sites',
     'django_user_agents',
+    'rest_framework',
 
 ]
 CACHES = {

@@ -45,7 +45,7 @@
                 <label class="mdl-textfield__label">
                     Enter tag:
                 </label>
-                <input class="mdl-textfield__input" id="id_tagname" maxlength="50" name="tagname" type="text" value="{{ prev_tag }}" required>
+                <input class="mdl-textfield__input" id="id_tagname" maxlength="50" name="tagname" type="text" {% if prev_tag is not None %}value="{{ prev_tag }}"{% endif %} required>
             </div>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
                     onclick="return empty()">Generate

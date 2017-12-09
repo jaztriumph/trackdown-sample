@@ -1,9 +1,9 @@
-# import google as google
 from PIL import Image, ImageDraw, ImageOps
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import Http404
 # from django.urls import reverse
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -14,10 +14,11 @@ import uuid
 from .models import User1, UserInfo, ClientInfo
 import datetime
 from django.utils import timezone
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import UserInfoSerializer
 import os
-
-# import string
-# from rest_framework import serializers
 
 CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com'
 
@@ -26,9 +27,22 @@ tag_link = ""
 user_tag = ""
 
 
+class UserInfoApi(APIView):
+    def get(self, request):
+        email = request.GET.get('email')
+        # user = authenticate(email=email, password="password")
+        print(email)
+        try:
+            user_info = UserInfo.objects.filter(user=request.user)
+        except Exception:
+            raise Http404("does")
+        serializer = UserInfoSerializer(user_info, many=True)
+        return Response(serializer.data)
+
+
 def log_in(request):
-    times = int(os.environ.get('TIMES',3))
-    print (times)
+    # times = os.environ['tick']
+    # print (times)
     # print request.get_full_path()
     token = request.GET.get('token')
     if (request.method == "GET") & (token is not None):
@@ -128,7 +142,7 @@ def tag_generator(request):
         link = BASE_TAG_URL + tag_link
     else:
         link = ""
-    context.update({'generated_tag': link, 'prev_tag':user_tag})
+    context.update({'generated_tag': link, 'prev_tag': user_tag})
 
     return render(request, 'tag.html', context)
 
