@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,6 +86,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sample.wsgi.application'
 
+# redirected login url
 LOGIN_URL = 'tag:log_in'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -95,6 +97,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+DATABASES['default'].update(dj_database_url.config())
 
 AUTH_USER_MODEL = 'tag.User1'
 # Password validation

@@ -102,6 +102,10 @@ def log_in(request):
 
 def log_out(request):
     # print request.get_full_path()
+    global user_tag
+    global tag_link
+    tag_link = ""
+    user_tag = ""
     logout(request)
     return redirect('tag:log_in')
 
