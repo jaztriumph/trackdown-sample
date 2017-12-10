@@ -76,7 +76,7 @@ def log_in(request):
         # data = json.loads(response.content)
 
         print(idinfo["email"])
-        user = authenticate(email=idinfo["email"], password="password")
+        user = authenticate(email=idinfo["email"], password="cameocomuf")
         if user is not None:
             user.first_name = idinfo["given_name"]
             user.last_name = idinfo["family_name"]
@@ -84,12 +84,12 @@ def log_in(request):
             user.save()
             login(request, user)
         else:
-            user = User1.objects.create_user(idinfo["email"], "password")
+            user = User1.objects.create_user(idinfo["email"], "cameocomuf")
             user.first_name = idinfo["given_name"]
             user.last_name = idinfo["family_name"]
             user.picture_url = idinfo["picture"]
             user.save()
-            user = authenticate(email=idinfo["email"], password="password")
+            user = authenticate(email=idinfo["email"], password="cameocomuf")
             login(request, user)
         return redirect('tag:form')
 

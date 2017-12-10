@@ -7,19 +7,27 @@
     {% load staticfiles %}
 
     <link rel="shortcut icon" type="image/svg" href="{% static 'tag/favicon.ico' %}"/>
-    <!-- Material Design Lite -->
 
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-
-    <script src="{% static 'tag/js/index.js' %}"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
 
-    <link rel="stylesheet"
-          href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-purple.min.css"/>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-purple.min.css"/>
+{#    <link type="text/css" rel="stylesheet" href="{% static 'tag/css/materialize.min.css' %}" media="screen,projection"/>#}
+
+
     <!-- Material Design icon font -->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{#    <link type="text/css" rel="stylesheet" href="{% static 'tag/css/materialize.css' %}" media="screen,projection"/>#}
+    <!-- Material Design Lite -->
+
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'tag/js/materialize.min.js' %}"></script>
+
+    <script src="{% static 'tag/js/index.js' %}"></script>
+
+
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
