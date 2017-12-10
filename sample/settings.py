@@ -85,6 +85,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sample.wsgi.application'
 
+LOGIN_URL = 'tag:log_in'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -134,4 +135,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
