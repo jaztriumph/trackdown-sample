@@ -89,7 +89,7 @@ class User1(AbstractBaseUser, PermissionsMixin):
 
 
 class UserInfo(models.Model):
-    user = models.ForeignKey(User1)
+    user = models.ForeignKey(User1, related_name='user_info')
     user_tag = models.CharField(max_length=50)
     generated_tag = models.CharField(max_length=100)
     user_time = models.DateTimeField(default=timezone.now)
@@ -99,7 +99,7 @@ class UserInfo(models.Model):
 
 
 class ClientInfo(models.Model):
-    user_info = models.ForeignKey(UserInfo)
+    user_info = models.ForeignKey(UserInfo, related_name='client_info')
     client_time = models.DateTimeField(default=timezone.now)
     # client_meta = PickledObjectField(default={})
     seen = models.BooleanField(default=False)

@@ -5,5 +5,5 @@ from .models import User1, UserManager, UserInfo, ClientInfo
 
 admin.site.register(User1)
 # admin.site.register(UserManager)
-admin.site.register(UserInfo)
+admin.site.register(UserInfo, )
 admin.site.register(ClientInfo)

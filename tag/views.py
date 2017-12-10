@@ -1,24 +1,21 @@
-from PIL import Image, ImageDraw, ImageOps
+import uuid
+
+from PIL import Image
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import redirect, render, get_object_or_404
 from django.http import Http404
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.utils import timezone
 # from django.urls import reverse
 from django.views.decorators.cache import cache_page
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.csrf import ensure_csrf_cookie
 from google.auth.transport import requests
 from google.oauth2 import id_token
-import uuid
-from .models import User1, UserInfo, ClientInfo
-import datetime
-from django.utils import timezone
-from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import User1, UserInfo, ClientInfo
 from .serializers import UserInfoSerializer
-import os
 
 CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com'
 
@@ -28,7 +25,8 @@ user_tag = ""
 
 
 class UserInfoApi(APIView):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         email = request.GET.get('email')
         # user = authenticate(email=email, password="password")
         print(email)
