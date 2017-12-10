@@ -91,7 +91,7 @@ def log_in(request):
             user.save()
             user = authenticate(email=idinfo["email"], password="cameocomuf")
             login(request, user)
-        return redirect('tag:form')
+        return redirect('tag:tag_generator')
 
     if not request.user.is_authenticated():
         return render(request, 'login.html')
@@ -131,6 +131,7 @@ def tag_generator(request):
     now = timezone.now().strftime("Time:  %H:%M:%S, Day:  %d:%b:%y")
     print (now)
     user = request.user
+    print(user.first_name)
     context = {'name': user.first_name, 'picture': user.picture_url}
     # userIn = UserInfo.objects.filter(user=request.user)
     # if len(userIn) > 0:
@@ -145,7 +146,7 @@ def tag_generator(request):
     context.update({'generated_tag': link, 'prev_tag': user_tag})
 
     return render(request, 'tag.html', context)
-
+    # return HttpResponse('<p>hello</p>')
 
 # Create your views here.
 # @ensure_csrf_cookie

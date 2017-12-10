@@ -21,7 +21,7 @@
         <meta charset="UTF-8">
 
         {% load staticfiles %}
-        <link rel="shortcut icon" type="image/png" href="{% static 'tag/favicon.ico' %}"/>
+{#        <link rel="shortcut icon" type="image/png" href="{% static 'tag/favicon.ico' %}"/>#}
 
         <meta name="google-signin-client_id"
               content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
@@ -59,9 +59,8 @@
 
         <input id="link" size="60" class="mdl-textfield__input" readonly="readonly" value="{{ generated_tag }}">
         <div id="copyButton">
-{#            <a class="waves-effect waves-light btn" onclick="Materialize.toast('I am a toast', 4000)">Toast!</a>#}
 
-            <img src="{% static 'tag/images/content_copy_black_36px.svg' %}" onclick="copyText();Materialize.toast('I am a toast', 4000)"/>
+            <img src="{% static 'tag/images/content_copy_black_36px.svg' %}" onclick="copyText()"/>
 
 
             {#                <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button"  onclick=" Materialize.toast('Link copied', 4000);">toast</button>#}

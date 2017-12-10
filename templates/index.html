@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}afaf{% endblock %}</title>
 
     {% load staticfiles %}
 
@@ -22,8 +22,8 @@
     <!-- Material Design Lite -->
 
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'tag/js/materialize.min.js' %}"></script>
+{#    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
+{#    <script type="text/javascript" src="{% static 'tag/js/materialize.min.js' %}"></script>#}
 
     <script src="{% static 'tag/js/index.js' %}"></script>
 
@@ -36,7 +36,7 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title of the Header -->
-            <span class="mdl-layout-title">{% block header %}{% endblock %}</span>
+            <span class="mdl-layout-title">{% block header %}afaf{% endblock %}</span>
             <!-- Spacer, to align items to right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation links, hidden on smaller displays -->
@@ -70,6 +70,7 @@
         <div class="page-content">
 
             {% block body %}
+                affa
             {% endblock %}
         </div>
     </main>
