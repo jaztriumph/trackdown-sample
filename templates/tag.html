@@ -43,7 +43,7 @@
         <form class="form" action="{% url 'tag:form' %}" method="get">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <label class="mdl-textfield__label">
-                    Enter tag:
+                    Enter tag
                 </label>
                 <input class="mdl-textfield__input" id="id_tagname" maxlength="50" name="tagname" type="text"
                        {% if prev_tag is not None %}value="{{ prev_tag }}"{% endif %} required>
