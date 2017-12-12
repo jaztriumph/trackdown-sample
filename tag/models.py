@@ -1,16 +1,11 @@
-import django
-from django.db import models
-from django.core.mail import send_mail
-from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.postgres.fields import JSONField
+from django.core.mail import send_mail
+from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-# import jsonfield
-# from picklefield.fields import PickledObjectField
-# from .managers import UserManager
-
-
-from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
@@ -101,8 +96,8 @@ class UserInfo(models.Model):
 class ClientInfo(models.Model):
     user_info = models.ForeignKey(UserInfo, related_name='client_info')
     client_time = models.DateTimeField(default=timezone.now)
-    # client_meta = PickledObjectField(default={})
-    seen = models.BooleanField(default=False)
+    client_meta = JSONField(default={})
+    times_seen = models.IntegerField(default=0)
     client_agent = models.CharField(max_length=200, default="DZ / jaz / Zome 62.0.3202")
 
     def __str__(self):

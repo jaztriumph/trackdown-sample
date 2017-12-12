@@ -1,4 +1,9 @@
+import ast
+
+# import simplejson as json
+import json
 import uuid
+# import string
 
 from PIL import Image
 from django.contrib.auth import authenticate, login, logout
@@ -13,6 +18,7 @@ from google.auth.transport import requests
 from google.oauth2 import id_token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from simplejson import JSONEncoder
 
 from .models import User1, UserInfo, ClientInfo
 from .serializers import UserInfoSerializer
@@ -150,6 +156,7 @@ def tag_generator(request):
     return render(request, 'tag.html', context)
     # return HttpResponse('<p>hello</p>')
 
+
 # Create your views here.
 # @ensure_csrf_cookie
 # @csrf_exempt
@@ -192,27 +199,59 @@ def tag_generator(request):
 #     return redirect('tag:form')
 
 
+def trim(agent):
+    agent = agent.split(" ")
+    length = len(agent)
+    agent = agent[0:length - 1]
+    agent = " ".join(agent)
+    print agent
+    return agent
+
+
+def useful_meta(meta):
+    list_keys = ['LOGNAME', 'USER', 'HTTP_USER_AGENT', 'HTTP_HOST', 'SERVER_NAME', 'REMOTE_HOST', 'REMOTE_USER',
+                 'SERVER_PORT', 'REMOTE_ADDR']
+    data = {}
+    for key in list_keys:
+        try:
+            data.update({key: meta[key]})
+        except Exception:
+            pass
+    print(data)
+    return data
+
+
 @cache_page(0)
 def image(request):
     print(request.user_agent)
     tag = request.GET.get('image_tag')
     user_info = UserInfo.objects.filter(generated_tag=tag)
+    print request.META
     print(user_info)
     if len(user_info) > 0:
-        client_info = ClientInfo()
-        client_info.user_info = user_info[0]
-        client_info.time = timezone.now()
-        # meta = tuple(request.META)
-        # print meta
-        print(type(request.META))
-        # client_info.client_meta = request.META
-        client_info.client_agent = request.user_agent.__str__()
-        client_info.save()
-    img = Image.new("RGB", (10, 10), "#faebd7")
-    # serialize to HTTP response
-    response = HttpResponse(content_type="image/png")
-    img.save(response, "PNG")
-    return response
+        current_user_agent = trim(request.user_agent.__str__())
+        current_IP = request.META['REMOTE_ADDR']
+        client_info = user_info[0].client_info.filter(client_agent=current_user_agent).filter(
+            client_meta__REMOTE_ADDR=current_IP)
+
+        if len(client_info) == 0:
+            client = ClientInfo()
+            client.user_info = user_info[0]
+            client.client_agent = trim(request.user_agent.__str__())
+            client.times_seen = 1
+        else:
+            client = client_info[0]
+            client.times_seen += 1
+
+        client.time = timezone.now()
+        client.client_meta = useful_meta(request.META)
+        client.save()
+        img = Image.new("RGB", (10, 10), "#faebd7")
+        # serialize to HTTP response
+        response = HttpResponse(content_type="image/png")
+        img.save(response, "PNG")
+        return response
+    return Http404
 
 
 @login_required
@@ -220,28 +259,28 @@ def all_tags(request):
     user = request.user
     user_info = UserInfo.objects.filter(user=user)
     context = {'name': user.first_name, 'picture': user.picture_url}
-    context.update({'user_info': reversed(user_info), 'BASE_TAG_URL': BASE_TAG_URL})
+    context.update({'user_info': user_info, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "allTags.html", context)
 
 
 @login_required
 def seen_tags(request):
     user = request.user
-    user_info = UserInfo.objects.filter(user=user)
-    clients = []
-    for info in user_info:
-        client_info = ClientInfo.objects.filter(user_info=info)
-        if len(client_info) > 2:
-            count = 0
-            index = 0
-            for client in client_info:
-                if client.client_agent.split('/')[0].strip() == 'PC':
-                    count += 1
-                if count > 2:
-                    clients.append(client_info[index])
-                    break
-                index += 1
+    clients = ClientInfo.objects.filter(user_info__user=user)
+    # clients = []
+    # for info in user_info:
+    #     client_info = ClientInfo.objects.filter(user_info=info)
+    #     if len(client_info) > 2:
+    #         count = 0
+    #         index = 0
+    #         for client in client_info:
+    #             if client.client_agent.split('/')[0].strip() == 'PC':
+    #                 count += 1
+    #             if count > 2:
+    #                 clients.append(client_info[index])
+    #                 break
+    #             index += 1
 
     context = {'name': user.first_name, 'picture': user.picture_url}
-    context.update({'client_info': reversed(clients), 'BASE_TAG_URL': BASE_TAG_URL})
+    context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "seenTags.html", context)
