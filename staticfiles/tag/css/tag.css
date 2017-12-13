@@ -1,5 +1,6 @@
 #generatedText {
     padding-left: 20px;
+
     display: inline-flex;
     width: 50%;
 }
@@ -12,7 +13,8 @@
 
 #copyButton {
     padding-left: 10px;
-    border-radius: 50%;
+    padding-top: 5px;
+    border-radius: 100%;
 
     /*float: inherit;*/
     /*position: relative;*/
@@ -20,9 +22,26 @@
 }
 
 #copyButton :hover {
-    background: lightgray;
+cursor:pointer;
 }
 
 #generateForm {
     padding: 20px;
 }
+
+#submit_btn {
+    padding: 15px;
+}
+
+
+
+/* label focus color */
+ .input-field input:focus + label {
+   color:#0d47a1 !important;
+ }
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid #0d47a1 !important;
+   box-shadow: 0 1px 0 0 #0d47a1 !important
+ }
+

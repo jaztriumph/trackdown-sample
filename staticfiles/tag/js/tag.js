@@ -8,10 +8,8 @@ function empty() {
 }
 
 function copyText() {
-    // Materialize.toast('Link copied', 4000).show();
     var copyText = document.getElementById("link");
     copyText.select();
     document.execCommand("Copy");
     document.getSelection().removeAllRanges();
 }
-
