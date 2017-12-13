@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}afaf{% endblock %}</title>
+    <title>{% block title %}index{% endblock %}</title>
 
     {% load staticfiles %}
 
     <link rel="shortcut icon" type="image/svg" href="{% static 'tag/favicon.ico' %}"/>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/css/materialize.min.css">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/materialize.css' %}"/>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/js/materialize.min.js"></script>
+
 
     <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'tag/js/materialize.js' %}"></script>
+
     <script src="{% static 'tag/js/index.js' %}"></script>
     {% block script %}
     {% endblock %}
@@ -25,15 +29,16 @@
 <header>
     <div class="navbar">
         <nav>
-            <div class="nav-wrapper" style="background-image: url('{% static 'tag/images/background_website.jpg' %}');">
+            <div class="nav-wrapper blue darken-4" >
 
                 <a href="{% url 'tag:tag_generator' %}" id="logo" class="brand-logo">{% block header %}
                     logo{% endblock %}</a>
                 <a href="#" data-target="slide-out" class="sidenav-trigger "><i class="material-icons">menu</i></a>
                 <div id="help_option">
-                    <ul  class="right ">
+                    <ul class="right ">
 
-                        <li><a href="{% url 'tag:instructions' %}"><img src="{% static 'tag/images/help_36px.svg' %}"/></a></li>
+                        <li><a id="image_help" href="{% url 'tag:instructions' %}"><img src="{% static 'tag/images/help_36px.svg' %}"/></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +60,7 @@
             </div>
         </li>
 
-        <li><a class="waves-effect" href="{% url 'tag:tag_generator' %}">Make a Tag</a></li>
+        <li><a class="active" href="{% url 'tag:tag_generator' %}">Make a Tag</a></li>
         <li><a class="waves-effect" href="{% url 'tag:mail_seen_tags' %}">Tracked Gmails</a></li>
         <li><a class="waves-effect" href="{% url 'tag:seen_tags' %}"> All Tracked Tags</a></li>
 
@@ -80,6 +85,6 @@
     </div>
 </main>
 
-</div>
+
 </body>
 </html>

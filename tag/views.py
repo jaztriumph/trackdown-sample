@@ -9,7 +9,6 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
-# from django.urls import reverse
 from django.views.decorators.cache import cache_page
 from google.auth.transport import requests
 from google.oauth2 import id_token
@@ -266,19 +265,6 @@ def all_tags(request):
 def seen_tags(request):
     user = request.user
     clients = ClientInfo.objects.filter(user_info__user=user)
-    # clients = []
-    # for info in user_info:
-    #     client_info = ClientInfo.objects.filter(user_info=info)
-    #     if len(client_info) > 2:
-    #         count = 0
-    #         index = 0
-    #         for client in client_info:
-    #             if client.client_agent.split('/')[0].strip() == 'PC':
-    #                 count += 1
-    #             if count > 2:
-    #                 clients.append(client_info[index])
-    #                 break
-    #             index += 1
     newlist = sorted(clients, key=lambda k: k.client_time, reverse=True)
     context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
     context.update({'client_info': newlist, 'BASE_TAG_URL': BASE_TAG_URL})
