@@ -17,7 +17,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{% static 'tag/js/materialize.js' %}"></script>
     <script src="{% static 'tag/js/index.js' %}"></script>
-
+    {% block script %}
+    {% endblock %}
 
 </head>
 <body>
@@ -32,7 +33,7 @@
                 <div id="help_option">
                     <ul  class="right ">
 
-                        <li><a href="#"><img src="{% static 'tag/images/help_36px.svg' %}"/></a></li>
+                        <li><a href="{% url 'tag:instructions' %}"><img src="{% static 'tag/images/help_36px.svg' %}"/></a></li>
                     </ul>
                 </div>
             </div>

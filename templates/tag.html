@@ -6,25 +6,23 @@
 {% block header %}
     Tracker
 {% endblock %}
+
+{% block script %}
+    <meta charset="UTF-8">
+
+    {% load staticfiles %}
+
+    <meta name="google-signin-client_id"
+          content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/tag.css' %}"/>
+    <script src="{% static 'tag/js/tag.js' %}"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+{% endblock %}
+
+
 {% block body %}
-
-
-    <html>
-    <head>
-
-        <meta charset="UTF-8">
-
-        {% load staticfiles %}
-
-        <meta name="google-signin-client_id"
-              content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
-
-        <link rel="stylesheet" type="text/css" href="{% static 'tag/css/tag.css' %}"/>
-        <script src="{% static 'tag/js/tag.js' %}"></script>
-        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    </head>
-    <body>
-
     <div id="generateForm">
 
         <form class="col s6" action="{% url 'tag:form' %}" method="get">
@@ -51,11 +49,11 @@
 
     </div>
 
-    <div id="generatedText" >
+    <div id="generatedText">
 
 
         <input id="link" style="font-size: 12px" class="input-field" readonly="readonly" value="{{ generated_tag }}">
-        <div id="copyButton" >
+        <div id="copyButton">
 
             <a><img src="{% static 'tag/images/content_copy_black_36px.svg' %}"
                     onclick="copyText();M.toast({html: 'Text copied'});"/></a>
@@ -66,6 +64,4 @@
     </div>
 
 
-    </body>
-    </html>
 {% endblock %}

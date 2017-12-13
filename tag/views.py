@@ -1,10 +1,6 @@
-import ast
-
 # import simplejson as json
-import json
+import os
 import uuid
-# import string
-from operator import itemgetter
 
 from PIL import Image
 from django.contrib.auth import authenticate, login, logout
@@ -19,11 +15,11 @@ from google.auth.transport import requests
 from google.oauth2 import id_token
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from simplejson import JSONEncoder
 
 from .models import User1, UserInfo, ClientInfo
 from .serializers import UserInfoSerializer
-import os
+
+# import string
 
 CLIENT_ID = os.environ["CLIENT_ID"]
 
@@ -254,7 +250,7 @@ def image(request):
         response = HttpResponse(content_type="image/png")
         img.save(response, "PNG")
         return response
-    return Http404
+    raise Http404
 
 
 @login_required
@@ -314,3 +310,10 @@ def mail_seen_tags(request):
     context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
     context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "gmailtracked.html", context)
+
+
+@login_required
+def instructions(request):
+    user = request.user
+    context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
+    return render(request, "instructions.html", context)
