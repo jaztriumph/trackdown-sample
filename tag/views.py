@@ -208,7 +208,7 @@ def trim(agent):
 
 def useful_meta(meta):
     list_keys = ['LOGNAME', 'USER', 'HTTP_USER_AGENT', 'HTTP_HOST', 'SERVER_NAME', 'REMOTE_HOST', 'REMOTE_USER',
-                 'SERVER_PORT', 'REMOTE_ADDR']
+                 'SERVER_PORT', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR']
     data = {}
     for key in list_keys:
         try:
@@ -228,7 +228,7 @@ def image(request):
     print(user_info)
     if len(user_info) > 0:
         current_user_agent = trim(request.user_agent.__str__())
-        current_IP = request.META['REMOTE_ADDR']
+        current_IP = request.META['HTTP_X_FORWARDED_FOR']
         client_info = user_info[0].client_info.filter(client_agent=current_user_agent).filter(
             client_meta__REMOTE_ADDR=current_IP)
 
