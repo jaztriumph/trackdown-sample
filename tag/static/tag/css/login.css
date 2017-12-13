@@ -1,0 +1,11 @@
+#signInButton {
+    /*align-self: center;*/
+    padding: 30px;
+    display: table;
+    margin: 15% 40% auto;
+
+    /*background: crimson;*/
+}
+body{
+background-color: red ;
+}

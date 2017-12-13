@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    All Tags
+{% endblock %}
+{% block header %}
+    All tags
+{% endblock %}
+
+
+{% block script %}
+    {% load staticfiles %}
+    <meta charset="UTF-8" name="google-signin-client_id"
+          content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/allTags.css' %}"/>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+{% endblock %}
+
+
+
+{% block body %}
+
+    <div id="parent">
+        <div id="allTags_table">
+            <table class="highlight">
+                <thead>
+                <tr>
+                    <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
+                    <th>Tag</th>
+                    <th>Generated Address</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- Row 1 -->
+                {% for info in user_info %}
+                    <tr>
+                        <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
+                        <td>{{ info.user_tag }}</td>
+                        <td>{{ BASE_TAG_URL }}{{ info.generated_tag }}</td>
+                        <td>{{ info.user_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

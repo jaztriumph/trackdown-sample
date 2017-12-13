@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}index{% endblock %}</title>
+
+    {% load staticfiles %}
+
+    <link rel="shortcut icon" type="image/svg" href="{% static 'tag/favicon.ico' %}"/>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.2/js/materialize.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/index.css' %}"/>
+
+
+    <script src="{% static 'tag/js/index.js' %}"></script>
+    {% block script %}
+    {% endblock %}
+
+</head>
+<body>
+<header>
+    <div class="navbar">
+        <nav>
+            <div class="nav-wrapper blue darken-4" >
+
+                <a href="{% url 'tag:tag_generator' %}" id="logo" class="brand-logo">{% block header %}
+                    logo{% endblock %}</a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger "><i class="material-icons">menu</i></a>
+                <div id="help_option">
+                    <ul class="right ">
+
+                        <li><a id="image_help" href="{% url 'tag:instructions' %}"><img src="{% static 'tag/images/help_36px.svg' %}"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
+    </div>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="{% static 'tag/images/background_website.jpg' %}">
+                </div>
+                <a href="#"><img class="circle" src="{{ picture }}"></a>
+                <a href="#"><span class="white-text name">{{ name }}</span></a>
+                <a href="#"><span class="white-text email">{{ email_id }}</span></a>
+            </div>
+        </li>
+
+        <li><a class="active" href="{% url 'tag:tag_generator' %}">Make a Tag</a></li>
+        <li><a class="waves-effect" href="{% url 'tag:mail_seen_tags' %}">Tracked Gmails</a></li>
+        <li><a class="waves-effect" href="{% url 'tag:seen_tags' %}"> All Tracked Tags</a></li>
+
+        <li><a class="waves-effect" href="{% url 'tag:all_tags' %}">All Tags</a></li>
+
+        <li>
+            <div class="divider"></div>
+        </li>
+
+        <li><a class="waves-effect" href="{% url 'tag:log_out' %}" onclick="signOut();">logout</a></li>
+    </ul>
+
+
+</header>
+
+<main>
+    <div>
+
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</main>
+
+
+</body>
+</html>

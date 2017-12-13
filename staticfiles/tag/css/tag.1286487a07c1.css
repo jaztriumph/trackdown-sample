@@ -1,0 +1,28 @@
+#generatedText {
+    padding-left: 20px;
+    display: inline-flex;
+    width: 50%;
+}
+
+#link {
+    color: gray;
+    font-size: small;
+    /*width: 40%;*/
+}
+
+#copyButton {
+    padding-left: 10px;
+    border-radius: 50%;
+
+    /*float: inherit;*/
+    /*position: relative;*/
+
+}
+
+#copyButton :hover {
+    background: lightgray;
+}
+
+#generateForm {
+    padding: 20px;
+}

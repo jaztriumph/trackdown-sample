@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Seen Tags
+{% endblock %}
+
+{% block header %}
+    Seen
+{% endblock %}
+
+{% block script %}
+
+    <meta charset="UTF-8" name="google-signin-client_id"
+          content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tag/css/seenTags.css' %}"/>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    {#    <script src="{% static 'tag/js/seenTags.js' %}"> </script>#}
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="parent">
+        <div id="seenTags_table">
+
+            <ul class="collapsible expandable ">
+
+                <li>
+
+                    <div id="co_header" class="collapsible-header ">
+
+                        <div id="first"><p><strong>Seen Tag</strong></p></div>
+                        <div id="second"><p><strong>Generated Address</strong></p></div>
+                        <div id="third"><p><strong>Time</strong></p></div>
+
+
+                    </div>
+
+
+                    {#                  <div style="background: oldlace;width: 0px" class="collapsible-body"><span></span></div>#}
+                </li>
+                {% for info in client_info %}
+                    <li>
+                        <div id="co_header" class="collapsible-header ">
+                            <div id="first"><p>{{ info.user_info.user_tag }}</p></div>
+                            <div id="second"><p>
+                                {{ BASE_TAG_URL }}{{ info.user_info.generated_tag }}</p>
+                            </div>
+                            <div id="third"><p>{{ info.client_time }}</p></div>
+
+
+                        </div>
+                        <div id="co_body" class="collapsible-body">
+                            <div id="clientInfo">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span id="constants">IP address </span></td>
+                                        <td>{{ info.client_meta.REMOTE_ADDR }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span id="constants">Server name </span></td>
+                                        <td>{{ info.client_meta.SERVER_NAME }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span id="constants">Log name</span></td>
+                                        <td>{{ info.client_meta.LOGNAME }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span id="constants">User </span></td>
+                                        <td>{{ info.client_meta.USER }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span id="constants">User Agent </span></td>
+                                        <td>{{ info.client_agent }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span id="constants">Times seen</span></td>
+                                        <td>{{ info.times_seen }}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

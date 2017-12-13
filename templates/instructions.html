@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    instructions
+{% endblock %}
+{% block header %}
+    Instructions
+{% endblock %}
+
+
+{% block script %}
+     {% load staticfiles %}
+        <meta charset="UTF-8" name="google-signin-client_id"
+              content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
+        <link rel="stylesheet" type="text/css" href="{% static 'tag/css/instructions.css' %}"/>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+{% endblock %}
+
+
+{% block body %}
+
+    <body>
+    <div id="construction">
+        <p id="text">UNDER CONSTRUCTION</p>
+    </div>
+
+{% endblock %}
