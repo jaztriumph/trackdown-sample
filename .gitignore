@@ -2,3 +2,4 @@
 .env
 /trackdownenv
 *.pyc
+*.gz
