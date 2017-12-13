@@ -18,14 +18,15 @@
 
     </head>
     <body>
+    <div id="pare">
     <div id="allTags_table">
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table class=" highlight " >
             <thead>
             <tr>
                 <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
-                <th class="mdl-data-table__cell--non-numeric">Tag</th>
-                <th class="mdl-data-table__cell--non-numeric">Generated Address</th>
-                <th class="mdl-data-table__cell--non-numeric">Time</th>
+                <th >Tag</th>
+                <th >Generated Address</th>
+                <th >Time</th>
             </tr>
             </thead>
             <tbody>
@@ -34,14 +35,15 @@
             {% for info in user_info %}
                 <tr>
                     <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
-                    <td class="mdl-data-table__cell--non-numeric">{{ info.user_tag }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ BASE_TAG_URL }}{{ info.generated_tag }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ info.user_time }}</td>
+                    <td >{{ info.user_tag }}</td>
+                    <td >{{ BASE_TAG_URL }}{{ info.generated_tag }}</td>
+                    <td >{{ info.user_time }}</td>
                 </tr>
             {% endfor %}
             </tbody>
 
         </table>
+    </div>
     </div>
     </body>
     </html>

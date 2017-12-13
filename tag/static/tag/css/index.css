@@ -1,11 +1,17 @@
-#profilePic {
-    border-radius: 50%;
-    /*position: relative;*/
+header,main, footer {
+    padding-left: 300px;
 }
 
-#userName {
-    position: absolute;
-    top: 35%;
-    left: 45%;
-    /*color: white;*/
+@media only screen and (max-width: 992px) {
+   header, main, footer {
+        padding-left: 0;
+    }
+}
+#logo{
+    padding-left: 40px;
+}
+
+#help_option{
+    padding-top: 10px !important;
+
 }

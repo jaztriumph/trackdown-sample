@@ -25,36 +25,45 @@
     </head>
     <body>
 
-    <div id="generateForm" class="demo-tooltip">
-        <form class="form" action="{% url 'tag:form' %}" method="get">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label">
-                    Enter tag
-                </label>
-                <input class="mdl-textfield__input" id="id_tagname" maxlength="50" name="tagname" type="text"
-                       {% if prev_tag is not None %}value="{{ prev_tag }}"{% endif %} required>
+    <div id="generateForm">
+
+        <form class="col s6" action="{% url 'tag:form' %}" method="get">
+            <div id="box" class="row">
+                <div class="input-field col s3 ">
+                    <input id="id_tagname" maxlength="50" name="tagname" type="text"
+                           {% if prev_tag is not None %}value="{{ prev_tag }}"{% endif %} required>
+
+                    <label for="id_tagname">Enter tag</label>
+
+                </div>
+                <div id="submit_btn">
+                    <button style="background-image: url('{% static 'tag/images/background_website.jpg' %}');"
+                            class="waves-effect waves-light btn" type="submit"
+                            onclick="return empty()">Generate
+                    </button>
+                </div>
+
             </div>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
-                    onclick="return empty()">Generate
-            </button>
+
+
         </form>
+
 
     </div>
 
-    <div id="generatedText">
-
-        <input id="link" size="60" class="mdl-textfield__input" readonly="readonly" value="{{ generated_tag }}">
-        <div id="copyButton">
-
-            <img src="{% static 'tag/images/content_copy_black_36px.svg' %}" onclick="copyText()"/>
+    <div id="generatedText" >
 
 
-            {#                <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button"  onclick=" Materialize.toast('Link copied', 4000);">toast</button>#}
+        <input id="link" style="font-size: 12px" class="input-field" readonly="readonly" value="{{ generated_tag }}">
+        <div id="copyButton" >
+
+            <a><img src="{% static 'tag/images/content_copy_black_36px.svg' %}"
+                    onclick="copyText();M.toast({html: 'Text copied'});"/></a>
+
+
         </div>
 
     </div>
-
-
 
 
     </body>

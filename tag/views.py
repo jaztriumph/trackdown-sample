@@ -284,3 +284,5 @@ def seen_tags(request):
     context = {'name': user.first_name, 'picture': user.picture_url}
     context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "seenTags.html", context)
+
+
