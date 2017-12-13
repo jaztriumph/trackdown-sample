@@ -42,6 +42,10 @@ class UserInfoApi(APIView):
 
 
 def log_in(request):
+    global user_tag
+    global tag_link
+    tag_link = ""
+    user_tag = ""
     # times = os.environ['tick']
     # print (times)
     # print request.get_full_path()
