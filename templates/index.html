@@ -26,7 +26,7 @@
         <nav>
             <div class="nav-wrapper" style="background-image: url('{% static 'tag/images/background_website.jpg' %}');">
 
-                <a href="{% url 'tag:tag_generator' %}" id="logo" class="brand-logo ">{% block header %}
+                <a href="{% url 'tag:tag_generator' %}" id="logo" class="brand-logo">{% block header %}
                     logo{% endblock %}</a>
                 <a href="#" data-target="slide-out" class="sidenav-trigger "><i class="material-icons">menu</i></a>
                 <div id="help_option">
@@ -50,13 +50,14 @@
                 </div>
                 <a href="#"><img class="circle" src="{{ picture }}"></a>
                 <a href="#"><span class="white-text name">{{ name }}</span></a>
-                <a href="#"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#"><span class="white-text email">{{ email_id }}</span></a>
             </div>
         </li>
 
         <li><a class="waves-effect" href="{% url 'tag:tag_generator' %}">Make a Tag</a></li>
-        <li><a class="waves-effect" href="{% url 'tag:seen_tags' %}">Tracked Tags</a></li>
-        <li><a class="waves-effect" href="">Unused Tags</a></li>
+        <li><a class="waves-effect" href="{% url 'tag:mail_seen_tags' %}">Tracked Gmails</a></li>
+        <li><a class="waves-effect" href="{% url 'tag:seen_tags' %}"> All Tracked Tags</a></li>
+
         <li><a class="waves-effect" href="{% url 'tag:all_tags' %}">All Tags</a></li>
 
         <li>

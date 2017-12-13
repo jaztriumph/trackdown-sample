@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^image/', views.image, name='image'),
     url(r'^all-tags/', views.all_tags, name='all_tags'),
     url(r'^seen-tags/', views.seen_tags, name='seen_tags'),
+    url(r'^mail-seen-tags/', views.mail_seen_tags, name='mail_seen_tags'),
+
 ]

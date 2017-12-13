@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 
 {% block title %}
-    Unsued Tags
+   tracked mails
 {% endblock %}
 {% block header %}
-    unsued
+    Tracked Mails
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
         {% load staticfiles %}
         <meta charset="UTF-8" name="google-signin-client_id"
               content="642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com">
-        <link rel="stylesheet" type="text/css" href="{% static 'tag/css/unsued.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'tag/css/gmailtracked.css' %}"/>
         <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
         {#    <script src="{% static 'tag/js/allTags.js' %}"> </script>#}
@@ -23,7 +23,7 @@
     </head>
     <body>
     <div id="parent">
-        <div id="unsuedTags_table">
+        <div id="mail_Tags_table">
             <table class="highlight">
                 <thead>
                 <tr>
@@ -36,12 +36,12 @@
                 <tbody>
 
                 <!-- Row 1 -->
-                {% for info in user_info %}
+                {% for info in client_info %}
                     <tr>
                         <!-- class "mdl-data-table__cell--non-numeric", align values to left -->
-                        <td>{{ info.user_tag }}</td>
-                        <td>{{ BASE_TAG_URL }}{{ info.generated_tag }}</td>
-                        <td>{{ info.user_time }}</td>
+                        <td>{{ info.user_info.user_tag }}</td>
+                        <td>{{ BASE_TAG_URL }}{{ info.user_info.generated_tag }}</td>
+                        <td>{{ info.client_time }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

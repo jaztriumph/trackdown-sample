@@ -4,6 +4,7 @@ import ast
 import json
 import uuid
 # import string
+from operator import itemgetter
 
 from PIL import Image
 from django.contrib.auth import authenticate, login, logout
@@ -141,7 +142,7 @@ def tag_generator(request):
     print (now)
     user = request.user
     print(user.first_name)
-    context = {'name': user.first_name, 'picture': user.picture_url}
+    context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
     # userIn = UserInfo.objects.filter(user=request.user)
     # if len(userIn) > 0:
     #     tag = userIn[len(userIn) - 1]
@@ -201,10 +202,11 @@ def tag_generator(request):
 
 
 def trim(agent):
-    agent = agent.split(" ")
-    length = len(agent)
-    agent = agent[0:length - 1]
-    agent = " ".join(agent)
+    agent = agent.split('/')
+    last = agent[2].strip()
+    last = last.split(' ')[0]
+    agent[2] = last
+    agent = "/".join(agent)
     print agent
     return agent
 
@@ -259,7 +261,7 @@ def image(request):
 def all_tags(request):
     user = request.user
     user_info = UserInfo.objects.filter(user=user)
-    context = {'name': user.first_name, 'picture': user.picture_url}
+    context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
     context.update({'user_info': user_info, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "allTags.html", context)
 
@@ -281,9 +283,34 @@ def seen_tags(request):
     #                 clients.append(client_info[index])
     #                 break
     #             index += 1
-
-    context = {'name': user.first_name, 'picture': user.picture_url}
-    context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
+    newlist = sorted(clients, key=lambda k: k.client_time, reverse=True)
+    context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
+    context.update({'client_info': newlist, 'BASE_TAG_URL': BASE_TAG_URL})
     return render(request, "seenTags.html", context)
 
 
+def check_for_mail_proxy(agent):
+    agent = agent.split('/')
+    if agent[2] == 'GmailImageProxy':
+        return True
+    return False
+
+
+@login_required
+def mail_seen_tags(request):
+    user = request.user
+    # clients = ClientInfo.objects.filter(user_info__user=user)
+    user_info = UserInfo.objects.filter(user=user)
+    clients = []
+    for info in user_info:
+        times = 0
+        client_info = ClientInfo.objects.filter(user_info=info)
+        for client in client_info:
+            if check_for_mail_proxy(client.client_agent):
+                times += client.times_seen
+            if times > 2:
+                clients.append(client)
+                break
+    context = {'name': user.first_name, 'picture': user.picture_url, 'email_id': user.email, }
+    context.update({'client_info': clients, 'BASE_TAG_URL': BASE_TAG_URL})
+    return render(request, "gmailtracked.html", context)
