@@ -22,8 +22,9 @@ from simplejson import JSONEncoder
 
 from .models import User1, UserInfo, ClientInfo
 from .serializers import UserInfoSerializer
+import os
 
-CLIENT_ID = '642931691711-njc9uv4lt3lhnnqeh6bq26crdacqpt29.apps.googleusercontent.com'
+CLIENT_ID = os.environ["CLIENT_ID"]
 
 BASE_TAG_URL = "https://trackdown.herokuapp.com/image?image_tag="
 tag_link = ""
