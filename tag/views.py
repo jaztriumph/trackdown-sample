@@ -23,8 +23,10 @@ from .serializers import UserInfoSerializer
 CLIENT_ID = os.environ["CLIENT_ID"]
 
 BASE_TAG_URL = "https://trackdown.herokuapp.com/image?image_tag="
-tag_link = ""
-user_tag = ""
+
+
+# tag_link = ""
+# user_tag = ""
 
 
 class UserInfoApi(APIView):
@@ -42,10 +44,10 @@ class UserInfoApi(APIView):
 
 
 def log_in(request):
-    global user_tag
-    global tag_link
-    tag_link = ""
-    user_tag = ""
+    # global user_tag
+    # global tag_link
+    # tag_link = ""
+    # user_tag = ""
     # times = os.environ['tick']
     # print (times)
     # print request.get_full_path()
@@ -102,28 +104,32 @@ def log_in(request):
         return render(request, 'login.html')
     # user = request.user
     # context = {'name': user.first_name, 'picture': user.picture_url}
+    request.session['user_tag'] = ""
+    request.session['tag_link'] = ""
     return redirect('tag:tag_generator')
 
 
 def log_out(request):
     # print request.get_full_path()
-    global user_tag
-    global tag_link
-    tag_link = ""
-    user_tag = ""
+    # global user_tag
+    # global tag_link
+    # tag_link = ""
+    # user_tag = ""
     logout(request)
     return redirect('tag:log_in')
 
 
 @login_required
 def form(request):
-    global user_tag
+    # global user_tag
     user_tag = request.GET.get('tagname')
     print(user_tag)
     if (request.method == "GET") & (user_tag is not None):
         generated_tag = str(uuid.uuid4())
-        global tag_link
-        tag_link = generated_tag
+        # global tag_link
+        # tag_link = generated_tag
+        request.session['user_tag'] = user_tag
+        request.session['tag_link'] = generated_tag
         now = timezone.now().strftime('%H:%M:%S')
         print (now)
         userinfo = UserInfo()
@@ -148,56 +154,15 @@ def tag_generator(request):
     #     link = BASE_TAG_URL + tag.generated_tag
     # else:
     #     link = ""
-    if tag_link != "":
+    user_tag = request.session.get('user_tag')
+    tag_link = request.session.get('tag_link')
+    if tag_link != None:
         link = BASE_TAG_URL + tag_link
     else:
         link = ""
     context.update({'generated_tag': link, 'prev_tag': user_tag})
 
     return render(request, 'tag.html', context)
-    # return HttpResponse('<p>hello</p>')
-
-
-# Create your views here.
-# @ensure_csrf_cookie
-# @csrf_exempt
-# def tags(request):
-#     token = request.GET.get('token')
-#     # print(token)
-#     try:
-#         idinfo = id_token.verify_oauth2_token(token, google.auth.transport.requests.Request(), CLIENT_ID)
-#         # print("iss")
-#         # print(idinfo['iss'])
-#         # Or, if multiple clients access the backend server:
-#         # idinfo = id_token.verify_oauth2_token(token, requests.Request())
-#         # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
-#         #     raise ValueError('Could not verify audience.')
-#
-#         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-#             raise ValueError('Wrong issuer.')
-#
-#         # If auth request is from a G Suite domain:
-#         # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
-#         #     raise ValueError('Wrong hosted domain.')
-#
-#         # ID token is valid. Get the user's Google Account ID from the decoded token.
-#         userid = idinfo['sub']
-#
-#     except ValueError:
-#         # Invalid token
-#         return redirect('tag:log_in')
-#     response = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + token)
-#     data = json.loads(response.content)
-#     print(data["email"])
-#     user = authenticate(email=data["email"], password="password")
-#     if user is not None:
-#         login(request, user)
-#     else:
-#         user = User1.objects.create_user(data["email"], "password")
-#         user.save()
-#         user = authenticate(email=data["email"], password="password")
-#         login(request, user)
-#     return redirect('tag:form')
 
 
 def trim(agent):
