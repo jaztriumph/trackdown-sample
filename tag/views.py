@@ -156,7 +156,7 @@ def tag_generator(request):
     #     link = ""
     user_tag = request.session.get('user_tag')
     tag_link = request.session.get('tag_link')
-    if tag_link != None:
+    if (tag_link != "") & (tag_link is not None):
         link = BASE_TAG_URL + tag_link
     else:
         link = ""
