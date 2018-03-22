@@ -213,7 +213,7 @@ def image(request):
         client.time = timezone.now()
         client.client_meta = useful_meta(request.META)
         client.save()
-        img = Image.new("RGB", (1, 1), "#faebd7")
+        img = Image.new("RGB", (1, 1), "#ffffff")
         # serialize to HTTP response
         response = HttpResponse(content_type="image/png")
         img.save(response, "PNG")
